@@ -1,0 +1,48 @@
+services:
+
+  mysql:
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    container_name: portal-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: portaldb
+      MYSQL_USER: portaluser
+      MYSQL_PASSWORD: portalpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - portal-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: ./portal
+      dockerfile: Dockerfile
+    container_name: portal-app
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./portal/src:/workspace/src
+      - ./portal/pom.xml:/workspace/pom.xml
+      - maven-cache:/root/.m2
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - portal-net
+
+networks:
+  portal-net:
+    driver: bridge
+
+volumes:
+  mysql-data:
+  maven-cache:

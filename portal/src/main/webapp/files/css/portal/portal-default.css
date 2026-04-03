@@ -1,0 +1,11 @@
+body.portal-section-member .portal-header {
+    background: #2f6fa3;
+}
+
+body.portal-section-recruiter .portal-header {
+    background: #4b7f2b;
+}
+
+body.portal-section-admin .portal-header {
+    background: #7a2f2f;
+}

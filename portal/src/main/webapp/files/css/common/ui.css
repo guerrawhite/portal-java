@@ -1,0 +1,37 @@
+.portal-header {
+    background: #2f3e4e;
+    color: #ffffff;
+    padding: 15px 0;
+}
+
+.portal-header-inner,
+.portal-footer-inner {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.portal-menu {
+    list-style: none;
+    margin: 10px 0 0 0;
+    padding: 0;
+}
+
+.portal-menu li {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.portal-menu a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.portal-footer {
+    background: #e5e5e5;
+    border-top: 1px solid #cccccc;
+    padding: 15px 0;
+}
+
+.home-page h2 {
+    margin-top: 0;
+}

@@ -6,14 +6,14 @@ TOMCAT_HOME=/opt/tomcat/apache-tomcat-9.0.117
 WAR_NAME=portal
 
 echo "======================================"
-echo " 🚀 Compilando proyecto..."
+echo " Deploying..."
 echo "======================================"
 sudo docker compose exec app mvn package \
   -f /workspace/pom.xml
 
 echo ""
 echo "======================================"
-echo " 🗑️  Eliminando despliegue anterior..."
+echo " Delete before deploy..."
 echo "======================================"
 sudo docker compose exec app rm -rf \
   $TOMCAT_HOME/webapps/$WAR_NAME.war \
@@ -21,7 +21,7 @@ sudo docker compose exec app rm -rf \
 
 echo ""
 echo "======================================"
-echo " 📦 Desplegando nuevo .war..."
+echo " Deploy new war..."
 echo "======================================"
 sudo docker compose exec app cp \
   /workspace/target/$WAR_NAME.war \
@@ -29,7 +29,7 @@ sudo docker compose exec app cp \
 
 echo ""
 echo "======================================"
-echo " 📋 Logs de Tomcat..."
+echo " Tomcat logs..."
 echo "======================================"
 sleep 3
 sudo docker compose exec app cat \
